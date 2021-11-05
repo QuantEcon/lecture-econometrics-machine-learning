@@ -1,0 +1,13 @@
+name: quantecon
+channels:
+  - default
+dependencies:
+  - python=3.8
+  - anaconda=2021.05
+  - pip
+  - pip:
+    - jupyter-book==0.12
+    - sphinx-jupyterbook-latex==0.4.6
+    - quantecon-book-theme==0.2.9
+    - sphinx-exercise==0.2.1
+

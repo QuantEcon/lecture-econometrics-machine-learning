@@ -1,0 +1,71 @@
+title: Econometrics and Machine Learning with Python
+author: Thomas J. Sargent & John Stachurski
+logo: _static/qe-logo-large.png
+description: This website presents a set of lectures on python for econometrics and machine learning.
+
+only_build_toc_files: true
+execute:
+  execute_notebooks: "cache"
+  timeout: 600
+
+# bibtex_bibfiles:
+#    - _static/quant-econ.bib
+
+html:
+  baseurl: https://python-econometrics-machine-learning.quantecon.org/
+
+latex:
+   latex_documents:
+      targetname: quantecon-python-econometrics-machine-learning.tex
+
+sphinx:
+  extra_extensions: [sphinx.ext.todo] # sphinx_tojupyter
+  config:
+    nb_render_priority:
+      html:
+      - "application/vnd.jupyter.widget-view+json"
+      - "application/javascript"
+      - "text/html"
+      - "text/latex"
+      - "image/svg+xml"
+      - "image/png"
+      - "image/jpeg"
+      - "text/markdown"
+      - "text/plain"
+      jupyter:
+      - "application/vnd.jupyter.widget-view+json"
+      - "application/javascript"
+      - "text/html"
+      - "text/latex"
+      - "image/svg+xml"
+      - "image/png"
+      - "image/jpeg"
+      - "text/markdown"
+      - "text/plain"
+    html_favicon: _static/lectures-favicon.ico
+    html_theme: quantecon_book_theme
+    html_static_path: ['_static']
+    html_theme_options:
+      header_organisation_url: https://quantecon.org
+      header_organisation: QuantEcon
+      repository_url: https://github.com/QuantEcon/lecture-econometrics-machine-learning
+      # nb_repository_url: https://github.com/QuantEcon/lecture-econometrics-machine-learning.notebooks
+      twitter: quantecon
+      twitter_logo_url: https://assets.quantecon.org/img/qe-twitter-logo.png
+      og_logo_url: https://assets.quantecon.org/img/qe-og-logo.png
+      description: This website presents a set of lectures on python for econometrics and machine learning.
+      keywords: Python, QuantEcon, Quantitative Economics, Economics, Econometrics, Machine Learning, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski
+      # google_analytics_id: UA-54984338-XX
+    # tojupyter_static_file_path: ["source/_static", "_static"]
+    # tojupyter_target_html: true
+    # tojupyter_urlpath: "https://python-econometrics-machine-learning.quantecon.org/"
+    # tojupyter_image_urlpath: "https://python-econometrics-machine-learning.quantecon.org/_static/"
+    # tojupyter_lang_synonyms: ["ipython", "ipython3", "python"]
+    # tojupyter_kernels:
+    #   python3:
+    #     kernelspec:
+    #       display_name: "Python"
+    #       language: python3
+    #       name: python3
+    #     file_extension: ".py"
+    # tojupyter_images_markdown: true
