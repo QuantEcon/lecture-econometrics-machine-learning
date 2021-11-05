@@ -173,7 +173,7 @@ Here's the content of `test_pwt.csv`
 We'll read this in from a URL using the `pandas` function `read_csv`.
 
 ```{code-cell} python3
-df = pd.read_csv('https://raw.githubusercontent.com/QuantEcon/lecture-econometrics-machine-learning/main/source/_static/lecture/pandas/data/test_pwt.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/QuantEcon/lecture-econometrics-machine-learning/main/lectures/_static/lecture/pandas/data/test_pwt.csv')
 type(df)
 ```
 

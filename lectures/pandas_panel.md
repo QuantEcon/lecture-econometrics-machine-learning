@@ -63,7 +63,7 @@ countries and assign it to `realwage`.
 The dataset can be accessed with the following link:
 
 ```{code-cell} python3
-url1 = 'https://raw.githubusercontent.com/QuantEcon/lecture-python/master/source/_static/lecture/pandas_panel/realwage.csv'
+url1 = 'https://raw.githubusercontent.com/QuantEcon/lecture-econometrics-machine-learning/main/lectures/_static/lecture/pandas_panel/realwage.csv'
 ```
 
 ```{code-cell} python3
@@ -183,7 +183,7 @@ function.
 The dataset can be accessed with the following link:
 
 ```{code-cell} python3
-url2 = 'https://raw.githubusercontent.com/QuantEcon/lecture-python/master/source/_static/lecture/pandas_panel/countries.csv'
+url2 = 'https://raw.githubusercontent.com/QuantEcon/lecture-econometrics-machine-learning/main/lectures/_static/lecture/pandas_panel/countries.csv'
 ```
 
 ```{code-cell} python3
@@ -500,7 +500,7 @@ in Europe by age and sex from [Eurostat](http://ec.europa.eu/eurostat/data/datab
 The dataset can be accessed with the following link:
 
 ```{code-cell} python3
-url3 = 'https://raw.githubusercontent.com/QuantEcon/lecture-python/master/source/_static/lecture/pandas_panel/employ.csv'
+url3 = 'https://raw.githubusercontent.com/QuantEcon/lecture-econometrics-machine-learning/main/lectures/_static/lecture/pandas_panel/employ.csv'
 ```
 
 Reading in the CSV file returns a panel dataset in long format. Use `.pivot_table()` to construct
