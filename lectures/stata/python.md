@@ -1,7 +1,7 @@
 (stata/python)=
 # Stata and Python
 
-```{todo}
+```{admonition} To Do
 @mmcky need to update for [Stata17](https://www.stata.com/new-in-stata/)
 with improvements to:
 1. [jupyter interface](https://www.stata.com/new-in-stata/jupyter-notebooks/)
