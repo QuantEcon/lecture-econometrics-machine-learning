@@ -7,7 +7,7 @@ native support.
 :::
 
 ```{admonition} Assumptions
-This session presumes you have already installed `Stata16` on your computer and you are already
+This lecture presumes you have already installed `Stata16` on your computer and you are already
 proficient with using `stata`
 ```
 
@@ -20,7 +20,7 @@ these problems and we can look at trying to find a solution.
 Integration between computer software is always a tricky problem to solve and typically requires
 some investment in setting up the integrations properly.
 
-In this session we will focus on setting up `python` in `stata` and getting access to your configuration.
+In this lecture we will focus on setting up `python` in `stata` and getting access to your configuration.
 
 Having good knowledge of how your system is configured can great assist in reducing bugs and issues related
 to software problems and environments.
@@ -65,7 +65,7 @@ are linked together.
   - this provides additional information about the `python` version and software used.
 ```
 
-You can also see that `python` hasn't been initialised as we haven't used it in this session.
+You can also see that `python` hasn't been initialised as we haven't used it in this lecture.
 
 ## Searching for Python on your System
 

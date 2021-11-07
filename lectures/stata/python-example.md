@@ -1,7 +1,7 @@
 (stata/python-example)=
 # A Common Workflow
 
-In this session we take a look at a typical `workflow` that I find
+In this lecture we take a look at a typical `workflow` that I find
 to be a pretty common.
 
 ```{note}
