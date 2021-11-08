@@ -1,0 +1,413 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>11. Exercises &#8212; Econometrics and Machine Learning with Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://python-econometrics-machine-learning.quantecon.org/stata/exercises.html" />
+    <link rel="shortcut icon" href="../_static/lectures-favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12. Troubleshooting" href="../troubleshooting.html" />
+    <link rel="prev" title="10. A Common Workflow" href="python-example.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/qe-logo-large.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Econometrics and Machine Learning with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Programming Skills and Tools
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../pandas.html">
+   1. Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../pandas_panel.html">
+   2. Pandas for Panel Data
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Econometrics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../statsmodels.html">
+   3.
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     statsmodels
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../scikit-learn.html">
+   4.
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scikit-learn
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Python for Stata Users
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="python.html">
+   5. Stata and Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python-setup.html">
+   6. Setup Python in Stata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python-integrated.html">
+   7. Integrated Workflows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python-files.html">
+   8. File based Workflows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="jupyter.html">
+   9. Stata and Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python-example.html">
+   10. A Common Workflow
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   11. Exercises
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Other
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../troubleshooting.html">
+   12. Troubleshooting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../status.html">
+   13. Execution Statistics
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/stata/exercises.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="exercises">
+<span id="stata-exercises"></span><h1><span class="section-number">11. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h1>
+<p>Here are some exercises to work through in your own time.</p>
+<div class="exercise admonition" id="stata/exercises-exercise-0">
+<p class="admonition-title"><span class="caption-number">Exercise 11.1 </span></p>
+<div class="section" id="exercise-content">
+<p>Using <code class="docutils literal notranslate"><span class="pre">stata</span></code> fetch the <code class="docutils literal notranslate"><span class="pre">sysauto</span></code> dataset using</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">sysuse</span> auto
+</pre></div>
+</div>
+<p><strong>Part 1:</strong></p>
+<p>Use the <a class="reference internal" href="python-integrated.html#stata-python-integrated"><span class="std std-ref">integrated workflows</span></a>
+to transfer the <code class="docutils literal notranslate"><span class="pre">weight</span></code> and <code class="docutils literal notranslate"><span class="pre">price</span></code> variables to <code class="docutils literal notranslate"><span class="pre">python</span></code> and save the
+results in a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> called <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span>
+<span class="go">    weight  price</span>
+<span class="go">0     2930   4099</span>
+<span class="go">1     3350   4749</span>
+<span class="go">2     2640   3799</span>
+<span class="go">3     3250   4816</span>
+<span class="go">4     4080   7827</span>
+<span class="go">..     ...    ...</span>
+<span class="go">69    2160   7140</span>
+<span class="go">70    2040   5397</span>
+<span class="go">71    1930   4697</span>
+<span class="go">72    1990   6850</span>
+<span class="go">73    3170  11995</span>
+
+<span class="go">[74 rows x 2 columns]</span>
+</pre></div>
+</div>
+<p><strong>Part 2:</strong></p>
+<p>Use <a class="reference internal" href="../statsmodels.html#statsmodels"><span class="std std-ref">statsmodels</span></a> to run a simple <code class="docutils literal notranslate"><span class="pre">OLS</span></code> regression of <code class="docutils literal notranslate"><span class="pre">weight</span> <span class="pre">~</span> <span class="pre">price</span></code>
+and then run this regression in <code class="docutils literal notranslate"><span class="pre">stata</span></code>.</p>
+</div>
+</div><div class="exercise admonition" id="stata/exercises-exercise-1">
+<p class="admonition-title"><span class="caption-number">Exercise 11.2 </span></p>
+<div class="section" id="exercise-content">
+<p>Use the <code class="docutils literal notranslate"><span class="pre">yfinance</span></code> package in <code class="docutils literal notranslate"><span class="pre">python</span></code> to fetch the last <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">months</span></code> of <code class="docutils literal notranslate"><span class="pre">Close</span></code>
+prince data for:</p>
+<ol class="simple">
+<li><p>Amazon (AMZN)</p></li>
+<li><p>Microsoft (MSFT)</p></li>
+<li><p>Game Stop (GME)</p></li>
+</ol>
+<p>and construct a dataframe.</p>
+<p><strong>Part 1:</strong></p>
+<p>Choose to use either the <a class="reference internal" href="python-integrated.html#stata-python-integrated"><span class="std std-ref">integrated workflows</span></a>
+or <a class="reference internal" href="python-files.html#stata-python-files"><span class="std std-ref">file based workflow</span></a> to transfer the
+last three months of stock price data (“closing price”) to <code class="docutils literal notranslate"><span class="pre">stata</span></code></p>
+<p>Run a simple <code class="docutils literal notranslate"><span class="pre">ols</span></code> regression:</p>
+<ol class="simple">
+<li><p>comparing <code class="docutils literal notranslate"><span class="pre">AMZN</span></code> and <code class="docutils literal notranslate"><span class="pre">MSFT</span></code> stock price histories</p></li>
+<li><p>comparing <code class="docutils literal notranslate"><span class="pre">AMZN</span></code> and <code class="docutils literal notranslate"><span class="pre">GME</span></code> stock price histories</p></li>
+</ol>
+<p><strong>Part 2:</strong></p>
+<p>Choose either <code class="docutils literal notranslate"><span class="pre">stata</span></code> or <code class="docutils literal notranslate"><span class="pre">python</span></code> to normalize each stock price history by
+dividing the column by the first price of each stock.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">dataframe</span></code> should look like</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/python-yfinance-stock-price-normalised.png"><img alt="../_images/python-yfinance-stock-price-normalised.png" src="../_images/python-yfinance-stock-price-normalised.png" style="width: 340.0px; height: 500.0px;" /></a>
+</div>
+<p>and make a <code class="docutils literal notranslate"><span class="pre">plot</span></code> comparing the three time series.</p>
+</div>
+</div></div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./stata"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="python-example.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">10. </span>A Common Workflow</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../troubleshooting.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">12. </span>Troubleshooting</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Thomas J. Sargent & John Stachurski<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

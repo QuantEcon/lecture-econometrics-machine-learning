@@ -1,0 +1,568 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>9. Stata and Jupyter &#8212; Econometrics and Machine Learning with Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://python-econometrics-machine-learning.quantecon.org/stata/jupyter.html" />
+    <link rel="shortcut icon" href="../_static/lectures-favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10. A Common Workflow" href="python-example.html" />
+    <link rel="prev" title="8. File based Workflows" href="python-files.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/qe-logo-large.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Econometrics and Machine Learning with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Programming Skills and Tools
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../pandas.html">
+   1. Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../pandas_panel.html">
+   2. Pandas for Panel Data
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Econometrics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../statsmodels.html">
+   3.
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     statsmodels
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../scikit-learn.html">
+   4.
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scikit-learn
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Python for Stata Users
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="python.html">
+   5. Stata and Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python-setup.html">
+   6. Setup Python in Stata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python-integrated.html">
+   7. Integrated Workflows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python-files.html">
+   8. File based Workflows
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   9. Stata and Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python-example.html">
+   10. A Common Workflow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises.html">
+   11. Exercises
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Other
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../troubleshooting.html">
+   12. Troubleshooting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../status.html">
+   13. Execution Statistics
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/stata/jupyter.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   9.1. Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stata-jupyter-kernel">
+   9.2. Stata Jupyter Kernel
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#local-notebook-option">
+     9.2.1. Local Notebook Option
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cloud-based-notebook-option">
+     9.2.2. Cloud Based Notebook Option
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ipystata">
+   9.3. IPyStata
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     9.3.1. Setup
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     9.3.2. Local Notebook Option
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     9.3.3. Cloud Based Notebook Option
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="stata-and-jupyter">
+<span id="stata-jupyter"></span><h1><span class="section-number">9. </span>Stata and Jupyter<a class="headerlink" href="#stata-and-jupyter" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="setup">
+<h2><span class="section-number">9.1. </span>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>There are two primary approaches to using <code class="docutils literal notranslate"><span class="pre">stata</span></code> with <code class="docutils literal notranslate"><span class="pre">jupyter</span></code>:</p>
+<ol class="simple">
+<li><p><a class="reference external" href="https://github.com/kylebarron/stata_kernel">Stata Jupyter Kernel</a></p></li>
+<li><p><a class="reference external" href="https://github.com/TiesdeKok/ipystata">IPyStata</a></p></li>
+</ol>
+<p>and they have different configurations catering to different workflows.</p>
+</div>
+<div class="section" id="stata-jupyter-kernel">
+<h2><span class="section-number">9.2. </span>Stata Jupyter Kernel<a class="headerlink" href="#stata-jupyter-kernel" title="Permalink to this headline">¶</a></h2>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>There is also <a class="reference external" href="https://kylebarron.dev/stata_kernel/">excellent documentation</a>
+available.</p>
+</div>
+<p>The <a class="reference external" href="https://github.com/kylebarron/stata_kernel">Stata Jupyter Kernel</a>
+enables using <code class="docutils literal notranslate"><span class="pre">stata</span></code> directly in <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> notebooks.</p>
+<p>It is effectively an alternative interface to use <code class="docutils literal notranslate"><span class="pre">stata</span></code> if you like
+<code class="docutils literal notranslate"><span class="pre">jupyter</span></code> as an interface.</p>
+<p>This can be useful if you want to write notebooks that are <code class="docutils literal notranslate"><span class="pre">integrated</span></code>
+with <code class="docutils literal notranslate"><span class="pre">stata</span></code> code.</p>
+<p>It supports a <a class="reference external" href="https://kylebarron.dev/stata_kernel/#stata_kernel-features">wide range of interaction with <code class="docutils literal notranslate"><span class="pre">stata</span></code></a></p>
+<p>To install using <code class="docutils literal notranslate"><span class="pre">anaconda</span></code> tools you can use the following commands
+in a <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code>:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>It is important to specify <code class="docutils literal notranslate"><span class="pre">-y</span></code> when issuing install requests via
+<code class="docutils literal notranslate"><span class="pre">conda</span></code> as there is no way to accept the user requested <code class="docutils literal notranslate"><span class="pre">y</span></code> input
+to proceed with install. <code class="docutils literal notranslate"><span class="pre">pip</span></code> doesn’t have this issue as it doesn’t
+request user input.</p>
+</div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>!conda install -y -c conda-forge stata_kernel
+</pre></div>
+</div>
+<p>once the software is installed you need to install the <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">kernel</span></code>
+on your computer</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>!python -m stata_kernel.install
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>[macOS]</strong> When I ran the kernel install step I got the following <code class="docutils literal notranslate"><span class="pre">error</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Cannot import kernel
+Installing Jupyter kernel spec
+WARNING: Could not find Stata path.
+Refer to the documentation to see how to <span class="nb">set</span> it manually:
+
+https://kylebarron.dev/stata_kernel/using_stata_kernel/configuration
+</pre></div>
+</div>
+<p>and had to manually set the <code class="docutils literal notranslate"><span class="pre">stata</span></code> path in the <code class="docutils literal notranslate"><span class="pre">.stata_kernel.conf</span></code> file located
+in your home directory to the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Path to stata executable. If you type this in your terminal, it should</span>
+<span class="c1"># start the Stata console</span>
+<span class="nv">stata_path</span> <span class="o">=</span> /Applications/Stata/StataIC.app/Contents/MacOS/StataIC
+
+<span class="c1"># **macOS only**</span>
+<span class="c1"># The manner in which the kernel connects to Stata. Either &#39;console&#39; or</span>
+<span class="c1"># &#39;automation&#39;. &#39;console&#39; is the default because it allows multiple</span>
+<span class="c1"># independent sessions of Stata at the same time.</span>
+<span class="nv">execution_mode</span> <span class="o">=</span> automation
+</pre></div>
+</div>
+<p>Unfortunately <code class="docutils literal notranslate"><span class="pre">StataIC</span></code> is limited on <code class="docutils literal notranslate"><span class="pre">mac</span> <span class="pre">os</span></code> so I had to use <code class="docutils literal notranslate"><span class="pre">automation</span></code>
+instead of <code class="docutils literal notranslate"><span class="pre">console</span></code> as per
+<a class="reference external" href="https://kylebarron.dev/stata_kernel/using_stata_kernel/configuration/">this issue in the docs</a>
+However this does enable the use of <code class="docutils literal notranslate"><span class="pre">browse</span></code></p>
+</div>
+<p>If you start <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code> you should now see a <code class="docutils literal notranslate"><span class="pre">stata</span></code> kernel option. If selected a <code class="docutils literal notranslate"><span class="pre">jupyter</span></code>
+notebook will open with a connection to <code class="docutils literal notranslate"><span class="pre">stata</span></code>. You can verify this on the top-right of the
+notebook</p>
+<div class="figure align-default">
+<img alt="../_images/jupyter-stata-kernel.png" src="../_images/jupyter-stata-kernel.png" />
+</div>
+<div class="section" id="local-notebook-option">
+<h3><span class="section-number">9.2.1. </span>Local Notebook Option<a class="headerlink" href="#local-notebook-option" title="Permalink to this headline">¶</a></h3>
+<p>You can download the <a class="reference download internal" download="" href="../_downloads/a2ef2cdf7ee1bd1f26ca21a837aed24d/stata-jupyter-kernel.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">notebook</span> <span class="pre">from</span> <span class="pre">here</span></code></a></p>
+<p>Then browse to your download location and load the notebook with <strong>jupyter</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/Downloads
+jupyter notebook stata-jupyter-kernel.ipynb
+</pre></div>
+</div>
+</div>
+<div class="section" id="cloud-based-notebook-option">
+<h3><span class="section-number">9.2.2. </span>Cloud Based Notebook Option<a class="headerlink" href="#cloud-based-notebook-option" title="Permalink to this headline">¶</a></h3>
+<p>There is no <code class="docutils literal notranslate"><span class="pre">cloud</span></code> based option available as it is difficult to load <code class="docutils literal notranslate"><span class="pre">stata</span></code> onto <code class="docutils literal notranslate"><span class="pre">cloud</span></code> server
+instances (i.e. can’t be done for free).</p>
+<p>You can <a class="reference external" href="https://github.com/QuantEcon/2021-workshop-rsit/blob/main/notebooks/session7/stata-jupyter-kernel.ipynb">view the notebook here</a></p>
+</div>
+</div>
+<div class="section" id="ipystata">
+<h2><span class="section-number">9.3. </span>IPyStata<a class="headerlink" href="#ipystata" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/TiesdeKok/ipystata">IPyStata</a> provides an alternative
+approach which provides support for running <code class="docutils literal notranslate"><span class="pre">stata</span></code> commands using <code class="docutils literal notranslate"><span class="pre">ipython</span> <span class="pre">magics</span></code>.</p>
+<p>So you remain in a <code class="docutils literal notranslate"><span class="pre">python</span></code> notebook and interface with stata when needed.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>There is a <a class="reference external" href="http://fmwww.bc.edu/repec/chic2016/chicago16_dekok.pdf">nice presentation</a>
+that runs through this integration.</p>
+</div>
+<p>To install you can use <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install ipystata
+</pre></div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">PyPI</span></code> release is from <a class="reference external" href="https://pypi.org/project/ipystata/#history">17th March 2017</a></p>
+<p>This is a bit of a red flag in my view as releases are best distributed via PyPI.
+However for tired open-source contributors this can be one short-cut taken to reduce workload.</p>
+</div>
+<p>however the <code class="docutils literal notranslate"><span class="pre">released</span> <span class="pre">version</span></code> via <code class="docutils literal notranslate"><span class="pre">PyPI</span></code> is a lot older than the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch of the code repository
+so to get the latest you could install using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install git+https://github.com/TiesdeKok/ipystata
+</pre></div>
+</div>
+<p>The <a class="reference external" href="https://nbviewer.jupyter.org/github/TiesdeKok/ipystata/blob/master/ipystata/Example.ipynb">documentation</a>
+largely consists of a demo notebook and the <a class="reference external" href="https://github.com/TiesdeKok/ipystata/blob/master/README.md">README</a>.</p>
+<div class="section" id="id1">
+<h3><span class="section-number">9.3.1. </span>Setup<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>To setup the package you then need to configure it to know where <code class="docutils literal notranslate"><span class="pre">stata</span></code> is on your computer.</p>
+<p>Open a <code class="docutils literal notranslate"><span class="pre">Jupyter</span></code> notebook that is attached to the <code class="docutils literal notranslate"><span class="pre">python</span></code> kernel.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipystata</span>
+<span class="kn">from</span> <span class="nn">ipystata.config</span> <span class="kn">import</span> <span class="n">config_stata</span>
+<span class="n">config_stata</span><span class="p">(</span><span class="s2">&quot;&lt;path-to-stata&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will look something like:</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="51aef287-090a-449d-8f2b-77936bfda60b" name="262adc8b-e41b-4827-ad0b-2e09fcc2d0d5" type="radio">
+</input><label class="tabbed-label" for="51aef287-090a-449d-8f2b-77936bfda60b">
+macOS</label><div class="tabbed-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">config_stata</span><span class="p">(</span><span class="s2">&quot;/Applications/Stata/StataSE.app/Contents/MacOS/stataSE&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="e7526822-c367-4efa-bf1e-cb77f85453e0" name="262adc8b-e41b-4827-ad0b-2e09fcc2d0d5" type="radio">
+</input><label class="tabbed-label" for="e7526822-c367-4efa-bf1e-cb77f85453e0">
+Windows</label><div class="tabbed-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">config_stata</span><span class="p">(</span><span class="s2">&quot;C:\Program Files (x86)\Stata14\StataSE-64.exe&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is documented <a class="reference external" href="https://github.com/TiesdeKok/ipystata#set-installation-directory-for-stata">here</a></p>
+</div>
+<div class="section" id="id2">
+<h3><span class="section-number">9.3.2. </span>Local Notebook Option<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>You can download the <a class="reference download internal" download="" href="../_downloads/4987a059b9bb6db99d25149dd5e562e1/jupyter-ipystata.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">notebook</span> <span class="pre">from</span> <span class="pre">here</span></code></a></p>
+<p>Then browse to your download location and load the notebook with <strong>jupyter</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/Downloads
+jupyter notebook jupyter-ipystata.ipynb
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3><span class="section-number">9.3.3. </span>Cloud Based Notebook Option<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>There is no <code class="docutils literal notranslate"><span class="pre">cloud</span></code> based option available as it is difficult to load <code class="docutils literal notranslate"><span class="pre">stata</span></code> onto <code class="docutils literal notranslate"><span class="pre">cloud</span></code> server
+instances (i.e. can’t be done for free).</p>
+<p>You can <a class="reference external" href="https://github.com/QuantEcon/2021-workshop-rsit/blob/main/notebooks/session7/jupyter-ipystata.ipynb">view the notebook here</a></p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./stata"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="python-files.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">8. </span>File based Workflows</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="python-example.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">10. </span>A Common Workflow</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Thomas J. Sargent & John Stachurski<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,740 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>8. File based Workflows &#8212; Econometrics and Machine Learning with Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://python-econometrics-machine-learning.quantecon.org/stata/python-files.html" />
+    <link rel="shortcut icon" href="../_static/lectures-favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9. Stata and Jupyter" href="jupyter.html" />
+    <link rel="prev" title="7. Integrated Workflows" href="python-integrated.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/qe-logo-large.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Econometrics and Machine Learning with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Programming Skills and Tools
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../pandas.html">
+   1. Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../pandas_panel.html">
+   2. Pandas for Panel Data
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Econometrics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../statsmodels.html">
+   3.
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     statsmodels
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../scikit-learn.html">
+   4.
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scikit-learn
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Python for Stata Users
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="python.html">
+   5. Stata and Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python-setup.html">
+   6. Setup Python in Stata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python-integrated.html">
+   7. Integrated Workflows
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   8. File based Workflows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="jupyter.html">
+   9. Stata and Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python-example.html">
+   10. A Common Workflow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises.html">
+   11. Exercises
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Other
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../troubleshooting.html">
+   12. Troubleshooting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../status.html">
+   13. Execution Statistics
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/stata/python-files.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pandas-reading-dta-files">
+   8.1. Pandas: Reading
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     dta
+    </span>
+   </code>
+   files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pandas-writing-dta-files">
+   8.2. Pandas: Writing
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     dta
+    </span>
+   </code>
+   files
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#errors-you-can-come-across-writing-dta-files">
+     8.2.1. Errors you can come across writing
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dta
+      </span>
+     </code>
+     files
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dates">
+       8.2.1.1. Dates
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="file-based-workflows">
+<span id="stata-python-files"></span><h1><span class="section-number">8. </span>File based Workflows<a class="headerlink" href="#file-based-workflows" title="Permalink to this headline">¶</a></h1>
+<p>In many cases it can be convenient to keep <code class="docutils literal notranslate"><span class="pre">stata</span></code> and <code class="docutils literal notranslate"><span class="pre">python</span></code>
+workflows largely independent of each other and use files to
+transfer data back and forth such as:</p>
+<ol class="simple">
+<li><p>Dataset Construction (Python)</p></li>
+<li><p>Statistical Modelling (Stata)</p></li>
+</ol>
+<p>or vice-versa.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">data</span></code> needs to be computed regularly due to updates in source files.
+The <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">script</span></code> interface in <code class="docutils literal notranslate"><span class="pre">stata</span></code> is useful here as it can
+be used to update <code class="docutils literal notranslate"><span class="pre">data</span></code> using a <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">script</span></code>, saving the update data
+to a new <code class="docutils literal notranslate"><span class="pre">dta</span></code> file and then running any <code class="docutils literal notranslate"><span class="pre">regressions</span></code> in <code class="docutils literal notranslate"><span class="pre">stata</span></code>.</p>
+</div>
+<p>The support for using a file based workflow is provided by <code class="docutils literal notranslate"><span class="pre">pandas</span></code>
+as it has an interface for reading and writing <code class="docutils literal notranslate"><span class="pre">dta</span></code> files.</p>
+<div class="section" id="pandas-reading-dta-files">
+<h2><span class="section-number">8.1. </span>Pandas: Reading <code class="docutils literal notranslate"><span class="pre">dta</span></code> files<a class="headerlink" href="#pandas-reading-dta-files" title="Permalink to this headline">¶</a></h2>
+<p>The documentation on <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_stata.html">pd.read_stata()</a> is a good resource.</p>
+<p>Let’s fetch the <code class="docutils literal notranslate"><span class="pre">auto</span></code> dataset provided by <code class="docutils literal notranslate"><span class="pre">stata</span></code> and save it as
+a <code class="docutils literal notranslate"><span class="pre">dta</span></code> file.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">sysuse</span> auto<span class="k"></span>
+<span class="k">save</span> <span class="s">&quot;auto.dta&quot;</span>
+</pre></div>
+</div>
+<p>You can view this dataset in the <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">reader</span></code></p>
+<div class="figure align-default">
+<img alt="../_images/stata-dataeditor-auto.png" src="../_images/stata-dataeditor-auto.png" />
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">stata</span></code> this dataset consists of the following types:</p>
+<table class="colwidths-given table">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 45%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Variables</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Label</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>make</p></td>
+<td><p>str18</p></td>
+<td><p>Make and Model</p></td>
+</tr>
+<tr class="row-odd"><td><p>price</p></td>
+<td><p>int</p></td>
+<td><p>Price</p></td>
+</tr>
+<tr class="row-even"><td><p>mpg</p></td>
+<td><p>int</p></td>
+<td><p>Mileage (mpg)</p></td>
+</tr>
+<tr class="row-odd"><td><p>rep78</p></td>
+<td><p>int</p></td>
+<td><p>Repair Record 1978</p></td>
+</tr>
+<tr class="row-even"><td><p>headroom</p></td>
+<td><p>float</p></td>
+<td><p>Headroom (in)</p></td>
+</tr>
+<tr class="row-odd"><td><p>trunk</p></td>
+<td><p>int</p></td>
+<td><p>Trunk space (cu. ft.)</p></td>
+</tr>
+<tr class="row-even"><td><p>weight</p></td>
+<td><p>int</p></td>
+<td><p>Weight (lbs)</p></td>
+</tr>
+<tr class="row-odd"><td><p>length</p></td>
+<td><p>int</p></td>
+<td><p>Length (in.)</p></td>
+</tr>
+<tr class="row-even"><td><p>turn</p></td>
+<td><p>int</p></td>
+<td><p>Turn Circle (ft.)</p></td>
+</tr>
+<tr class="row-odd"><td><p>displacement</p></td>
+<td><p>int</p></td>
+<td><p>Displacement (cu. in.)</p></td>
+</tr>
+<tr class="row-even"><td><p>gear_ratio</p></td>
+<td><p>float</p></td>
+<td><p>Gear Ratio</p></td>
+</tr>
+<tr class="row-odd"><td><p>foreign</p></td>
+<td><p>byte</p></td>
+<td><p>Car Type</p></td>
+</tr>
+</tbody>
+</table>
+<p>Where <code class="docutils literal notranslate"><span class="pre">foreign</span></code> is <code class="docutils literal notranslate"><span class="pre">labelled</span></code> data represented by <code class="docutils literal notranslate"><span class="pre">0/1</span></code> with labels:</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> = <code class="docutils literal notranslate"><span class="pre">Domestic</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> = <code class="docutils literal notranslate"><span class="pre">Foreign</span></code></p></li>
+</ol>
+<p>Let us now read this <code class="docutils literal notranslate"><span class="pre">dta</span></code> file into <code class="docutils literal notranslate"><span class="pre">python</span></code> using <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_stata.html">pd.read_stata()</a></p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The default saving location for <code class="docutils literal notranslate"><span class="pre">stata</span></code> is in your <code class="docutils literal notranslate"><span class="pre">Documents</span></code> directory. You may want to
+write the <code class="docutils literal notranslate"><span class="pre">dta</span></code> file to some other location if you wish for easier access when using <code class="docutils literal notranslate"><span class="pre">jupyter</span></code></p>
+</div>
+</div>
+<p>Open a <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code> and then import the data such as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">auto</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_stata</span><span class="p">(</span><span class="s2">&quot;auto.dta&quot;</span><span class="p">)</span>
+<span class="n">auto</span>
+</pre></div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As you can see from the <code class="docutils literal notranslate"><span class="pre">rep78</span></code> variable, missing values are handled in the
+transfer (by default) and represented by <code class="docutils literal notranslate"><span class="pre">np.nan</span></code></p>
+</div>
+</div>
+<div class="figure align-default">
+<img alt="../_images/python-pandas-read-auto.png" src="../_images/python-pandas-read-auto.png" />
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">types</span></code> reported by <code class="docutils literal notranslate"><span class="pre">auto.dtypes</span></code> show that <code class="docutils literal notranslate"><span class="pre">pandas</span></code> has done a good job of fetching
+the data faithfully from the <code class="docutils literal notranslate"><span class="pre">stata</span></code> dta file.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">auto</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+<p>produces the following list:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Labelled Data in <code class="docutils literal notranslate"><span class="pre">stata</span></code> such as <code class="docutils literal notranslate"><span class="pre">foreign</span></code> is converted into <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/categorical.html">pd.Categorical</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pandas</span></code> uses a column of <code class="docutils literal notranslate"><span class="pre">dtype</span> <span class="pre">=</span> <span class="pre">object</span></code> for a column of strings, as <code class="docutils literal notranslate"><span class="pre">str</span></code> objects are a collection of
+variable length <code class="docutils literal notranslate"><span class="pre">str</span></code> objects. This means you can edit these strings to an arbitrary length.</p>
+</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span>              <span class="nb">object</span>
+<span class="n">price</span>              <span class="n">int16</span>
+<span class="n">mpg</span>                <span class="n">int16</span>
+<span class="n">rep78</span>            <span class="n">float64</span>
+<span class="n">headroom</span>         <span class="n">float32</span>
+<span class="n">trunk</span>              <span class="n">int16</span>
+<span class="n">weight</span>             <span class="n">int16</span>
+<span class="n">length</span>             <span class="n">int16</span>
+<span class="n">turn</span>               <span class="n">int16</span>
+<span class="n">displacement</span>       <span class="n">int16</span>
+<span class="n">gear_ratio</span>       <span class="n">float32</span>
+<span class="n">foreign</span>         <span class="n">category</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pandas-writing-dta-files">
+<h2><span class="section-number">8.2. </span>Pandas: Writing <code class="docutils literal notranslate"><span class="pre">dta</span></code> files<a class="headerlink" href="#pandas-writing-dta-files" title="Permalink to this headline">¶</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can also write other <code class="docutils literal notranslate"><span class="pre">data</span></code> file formats if you have trouble
+with the <code class="docutils literal notranslate"><span class="pre">dta</span></code> writer, such as <code class="docutils literal notranslate"><span class="pre">csv</span></code>, <code class="docutils literal notranslate"><span class="pre">xlsx</span></code>. However you often loose
+information in this process and you may need to think about <code class="docutils literal notranslate"><span class="pre">dtypes</span></code> during this
+translation process between formats in a similar way as when migrating the raw data
+via the <code class="docutils literal notranslate"><span class="pre">stata</span> <span class="pre">function</span> <span class="pre">interface</span></code>.</p>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You may notice that the <code class="docutils literal notranslate"><span class="pre">to_stata()</span></code> method is associated with a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> object.
+This is different to <code class="docutils literal notranslate"><span class="pre">pd.read_stata()</span></code> which is a top level function for reading in the
+<code class="docutils literal notranslate"><span class="pre">dta</span></code> file associated with <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.</p>
+</div>
+</div>
+<p>You can write to <code class="docutils literal notranslate"><span class="pre">dta</span></code> file format using <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_stata.html">pd.DataFrame.to_stata()</a> method associated with <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
+<span class="n">dowjones</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">Ticker</span><span class="p">(</span><span class="s2">&quot;^DJI&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">dowjones</span><span class="o">.</span><span class="n">history</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2010-01-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2020-12-31&quot;</span><span class="p">)[[</span><span class="s1">&#39;Close&#39;</span><span class="p">,</span> <span class="s1">&#39;Volume&#39;</span><span class="p">]]</span>
+<span class="n">data</span><span class="o">.</span><span class="n">to_stata</span><span class="p">(</span><span class="s2">&quot;yfinance-dji.dta&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is also possible to write these <code class="docutils literal notranslate"><span class="pre">dta</span></code> files from within a stata python program
+such as:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>python:
+import yfinance<span class="k"> as</span> yf
+dowjones = yf<span class="m">.</span>Ticker(<span class="s">&quot;^DJI&quot;</span>)
+data = dowjones<span class="m">.</span>history(start=<span class="s">&quot;2010-01-01&quot;</span>,<span class="k"> end</span>=<span class="s">&quot;2020-12-31&quot;</span>)[[&#39;Close&#39;, &#39;Volume&#39;]]
+data<span class="m">.</span>to_stata(<span class="s">&quot;yfinance-dji.dta&quot;</span>)<span class="k"></span>
+<span class="k">end</span>
+<span class="k">use</span> yfinance<span class="o">-</span>dji<span class="m">.</span>dta,<span class="k"> clear</span>
+</pre></div>
+</div>
+<p>or alternatively running a <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">script</span></code></p>
+</div>
+<p>This will save a <code class="docutils literal notranslate"><span class="pre">dta</span></code> file that can be opened with <code class="docutils literal notranslate"><span class="pre">stata</span></code> and viewed
+in the <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">editor</span></code></p>
+<div class="figure align-default">
+<img alt="../_images/python-pandas-yfinance-data-tostata-dataeditor1.png" src="../_images/python-pandas-yfinance-data-tostata-dataeditor1.png" />
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">python</span></code> if you run</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>you will see the <code class="docutils literal notranslate"><span class="pre">index</span></code> is constructed of <code class="docutils literal notranslate"><span class="pre">Timestamp</span></code> objects</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;2009-12-31 00:00:00&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>These objects have been transferred for you into <code class="docutils literal notranslate"><span class="pre">stata</span></code> date variables as <code class="docutils literal notranslate"><span class="pre">tc</span></code>.</p>
+<p>You can now format this data straight away which is convenient as it reduces the
+amount of <code class="docutils literal notranslate"><span class="pre">translation</span></code> you need to think about.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">format</span> <span class="nx">%tcCCYY-NN-DD</span> Date
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">viewer</span></code> now consists of nicely formatted <code class="docutils literal notranslate"><span class="pre">dates</span></code></p>
+<div class="figure align-default">
+<img alt="../_images/python-pandas-yfinance-data-tostata-dataeditor2.png" src="../_images/python-pandas-yfinance-data-tostata-dataeditor2.png" />
+</div>
+<p>You may notice the default <code class="docutils literal notranslate"><span class="pre">datetime</span></code> object has been translated nicely but <code class="docutils literal notranslate"><span class="pre">pandas</span></code>
+has used stata <code class="docutils literal notranslate"><span class="pre">tc</span></code> format (by default) as <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_stata.html">per the documentation</a>.
+We can specify <code class="docutils literal notranslate"><span class="pre">td</span></code> dates using the <code class="docutils literal notranslate"><span class="pre">convert_dates=</span></code> keyword argument and specifying the <code class="docutils literal notranslate"><span class="pre">column</span></code>
+and which <code class="docutils literal notranslate"><span class="pre">datetime</span></code> conversion to use such as:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>python:
+data = data<span class="m">.</span>reset_index()
+data<span class="m">.</span>to_stata(<span class="s">&quot;yfinance-dji2.dta&quot;</span>, convert_dates={&#39;Date&#39; : &#39;td&#39;})<span class="k"></span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<div class="section" id="errors-you-can-come-across-writing-dta-files">
+<h3><span class="section-number">8.2.1. </span>Errors you can come across writing <code class="docutils literal notranslate"><span class="pre">dta</span></code> files<a class="headerlink" href="#errors-you-can-come-across-writing-dta-files" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">pandas</span></code> object is more general than the stata <code class="docutils literal notranslate"><span class="pre">dta</span></code> format so there are cases where
+the data can’t be written to <code class="docutils literal notranslate"><span class="pre">dta</span></code> format.</p>
+<p>Let’s use the following <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> to look at this issue:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;a&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">])],</span>
+    <span class="s1">&#39;b&#39;</span> <span class="p">:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]],</span>
+    <span class="s1">&#39;c&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+<span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>you will get a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> that looks like the following (and associated <code class="docutils literal notranslate"><span class="pre">dtypes</span></code>)</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/python-pandas-tostata-error-data.png"><img alt="../_images/python-pandas-tostata-error-data.png" src="../_images/python-pandas-tostata-error-data.png" style="width: 319.0px; height: 344.0px;" /></a>
+</div>
+<p>As you can see the first column consists of <code class="docutils literal notranslate"><span class="pre">pd.Series</span></code> objects. The pandas DataFrame is
+capable of storing any <code class="docutils literal notranslate"><span class="pre">python</span></code> object as elements in a general column <code class="docutils literal notranslate"><span class="pre">dtype=object</span></code></p>
+<p>To get the first element of column <code class="docutils literal notranslate"><span class="pre">a</span></code> you can use</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>which displays the <code class="docutils literal notranslate"><span class="pre">object</span></code> which is a <code class="docutils literal notranslate"><span class="pre">pd.Series</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>    <span class="mi">1</span>
+<span class="mi">1</span>    <span class="mi">2</span>
+<span class="mi">2</span>    <span class="mi">3</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In practice, when working with data, this is not very common but I wanted to
+demonstrate that the <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> object is capable of storing complex data types.</p>
+</div>
+<p>If you now try and write this <code class="docutils literal notranslate"><span class="pre">dataframe</span></code> to disk using the <code class="docutils literal notranslate"><span class="pre">to_stata()</span></code> method you
+will get a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> as there is no way to store the <code class="docutils literal notranslate"><span class="pre">pd.Series</span></code> objects in column
+<code class="docutils literal notranslate"><span class="pre">a</span></code> int a <code class="docutils literal notranslate"><span class="pre">dta</span></code> file.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">to_stata</span><span class="p">(</span><span class="s2">&quot;test.dta&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>you will get the following <code class="docutils literal notranslate"><span class="pre">Traceback</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span>                                <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">28</span><span class="o">-</span><span class="mi">43</span><span class="n">f621af9c2f</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">data</span><span class="o">.</span><span class="n">to_stata</span><span class="p">(</span><span class="s2">&quot;test.dta&quot;</span><span class="p">)</span>
+
+<span class="o">~/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">util</span><span class="o">/</span><span class="n">_decorators</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="mi">212</span>                 <span class="k">else</span><span class="p">:</span>
+    <span class="mi">213</span>                     <span class="n">kwargs</span><span class="p">[</span><span class="n">new_arg_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_arg_value</span>
+<span class="o">--&gt;</span> <span class="mi">214</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="mi">215</span> 
+    <span class="mi">216</span>         <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">wrapper</span><span class="p">)</span>
+
+<span class="o">~/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">frame</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">to_stata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">convert_dates</span><span class="p">,</span> <span class="n">write_index</span><span class="p">,</span> <span class="n">byteorder</span><span class="p">,</span> <span class="n">time_stamp</span><span class="p">,</span> <span class="n">data_label</span><span class="p">,</span> <span class="n">variable_labels</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">convert_strl</span><span class="p">)</span>
+   <span class="mi">1967</span>             <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;version&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">version</span>
+   <span class="mi">1968</span> 
+<span class="o">-&gt;</span> <span class="mi">1969</span>         <span class="n">writer</span> <span class="o">=</span> <span class="n">statawriter</span><span class="p">(</span>
+   <span class="mi">1970</span>             <span class="n">path</span><span class="p">,</span>
+   <span class="mi">1971</span>             <span class="bp">self</span><span class="p">,</span>
+
+<span class="o">~/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">io</span><span class="o">/</span><span class="n">stata</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">convert_dates</span><span class="p">,</span> <span class="n">write_index</span><span class="p">,</span> <span class="n">byteorder</span><span class="p">,</span> <span class="n">time_stamp</span><span class="p">,</span> <span class="n">data_label</span><span class="p">,</span> <span class="n">variable_labels</span><span class="p">)</span>
+   <span class="mi">2078</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_own_file</span> <span class="o">=</span> <span class="kc">True</span>
+   <span class="mi">2079</span>         <span class="c1"># attach nobs, nvars, data, varlist, typlist</span>
+<span class="o">-&gt;</span> <span class="mi">2080</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_pandas</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+   <span class="mi">2081</span> 
+   <span class="mi">2082</span>         <span class="k">if</span> <span class="n">byteorder</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="o">~/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">io</span><span class="o">/</span><span class="n">stata</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">_prepare_pandas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+   <span class="mi">2307</span> 
+   <span class="mi">2308</span>         <span class="c1"># Verify object arrays are strings and encode to bytes</span>
+<span class="o">-&gt;</span> <span class="mi">2309</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_encode_strings</span><span class="p">()</span>
+   <span class="mi">2310</span> 
+   <span class="mi">2311</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_set_formats_and_types</span><span class="p">(</span><span class="n">dtypes</span><span class="p">)</span>
+
+<span class="o">~/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">io</span><span class="o">/</span><span class="n">stata</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">_encode_strings</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+   <span class="mi">2337</span>                 <span class="k">if</span> <span class="ow">not</span> <span class="p">((</span><span class="n">inferred_dtype</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="s2">&quot;unicode&quot;</span><span class="p">))</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">column</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+   <span class="mi">2338</span>                     <span class="n">col</span> <span class="o">=</span> <span class="n">column</span><span class="o">.</span><span class="n">name</span>
+<span class="o">-&gt;</span> <span class="mi">2339</span>                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+   <span class="mi">2340</span>                         <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">   2341 Column `</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">` cannot be exported.</span><span class="se">\n\n</span><span class="s2">Only string-like object arrays</span>
+
+<span class="s2">ValueError: Column `a` cannot be exported.</span>
+
+<span class="s2">Only string-like object arrays</span>
+<span class="s2">containing all strings or a mix of strings and None can be exported.</span>
+<span class="s2">Object arrays containing only null values are prohibited. Other object</span>
+<span class="s2">types cannot be exported and must first be converted to one of the</span>
+<span class="s2">supported types.</span>
+</pre></div>
+</div>
+<p>If you try exporting column <code class="docutils literal notranslate"><span class="pre">b</span></code> you would similarly get a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> as <code class="docutils literal notranslate"><span class="pre">stata</span></code>
+can’t represent lists of numbers.</p>
+<p>This is sensible for the domain in which <code class="docutils literal notranslate"><span class="pre">stata</span></code> operates. For regressions we need
+to store variables that contains some <code class="docutils literal notranslate"><span class="pre">data</span></code> such as <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code> values
+that <code class="docutils literal notranslate"><span class="pre">stata</span></code> can directly operate on.</p>
+<div class="section" id="dates">
+<h4><span class="section-number">8.2.1.1. </span>Dates<a class="headerlink" href="#dates" title="Permalink to this headline">¶</a></h4>
+<p>If you try passing <code class="docutils literal notranslate"><span class="pre">datetime</span></code> objects from <code class="docutils literal notranslate"><span class="pre">pandas</span></code> that includes <code class="docutils literal notranslate"><span class="pre">time</span> <span class="pre">zone</span></code> information you will
+get a <code class="docutils literal notranslate"><span class="pre">NotImplementedError</span></code> as <code class="docutils literal notranslate"><span class="pre">stata</span></code>.</p>
+<p>Generally this type of error indicates that this is <strong>not supported</strong>.</p>
+<p>This could mean that <code class="docutils literal notranslate"><span class="pre">stata</span></code> might be able to work with <code class="docutils literal notranslate"><span class="pre">time</span> <span class="pre">zone</span></code> data but it hasn’t
+been implemented in the <code class="docutils literal notranslate"><span class="pre">pandas</span></code> code – or the <code class="docutils literal notranslate"><span class="pre">target</span></code> data type can’t support the
+additional information.</p>
+<p>In this case you will need to cast the <code class="docutils literal notranslate"><span class="pre">datetime</span></code> into a simpler <code class="docutils literal notranslate"><span class="pre">datetime</span></code> object.</p>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./stata"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="python-integrated.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">7. </span>Integrated Workflows</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="jupyter.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">9. </span>Stata and Jupyter</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Thomas J. Sargent & John Stachurski<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

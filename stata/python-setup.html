@@ -1,0 +1,548 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6. Setup Python in Stata &#8212; Econometrics and Machine Learning with Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://python-econometrics-machine-learning.quantecon.org/stata/python-setup.html" />
+    <link rel="shortcut icon" href="../_static/lectures-favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7. Integrated Workflows" href="python-integrated.html" />
+    <link rel="prev" title="5. Stata and Python" href="python.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/qe-logo-large.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Econometrics and Machine Learning with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Programming Skills and Tools
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../pandas.html">
+   1. Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../pandas_panel.html">
+   2. Pandas for Panel Data
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Econometrics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../statsmodels.html">
+   3.
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     statsmodels
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../scikit-learn.html">
+   4.
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scikit-learn
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Python for Stata Users
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="python.html">
+   5. Stata and Python
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   6. Setup Python in Stata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python-integrated.html">
+   7. Integrated Workflows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python-files.html">
+   8. File based Workflows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="jupyter.html">
+   9. Stata and Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python-example.html">
+   10. A Common Workflow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises.html">
+   11. Exercises
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Other
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../troubleshooting.html">
+   12. Troubleshooting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../status.html">
+   13. Execution Statistics
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/stata/python-setup.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#checking-your-configuration">
+   6.1. Checking your Configuration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#searching-for-python-on-your-system">
+   6.2. Searching for Python on your System
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-the-python-distribution">
+   6.3. Setting the python distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#updating-your-sys-path-in-python">
+   6.4. Updating your
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sys.path
+    </span>
+   </code>
+   in
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     python
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing-python">
+   6.5. Testing Python
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="setup-python-in-stata">
+<span id="stata-python-setup"></span><h1><span class="section-number">6. </span>Setup Python in Stata<a class="headerlink" href="#setup-python-in-stata" title="Permalink to this headline">¶</a></h1>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Stata16 <a class="reference external" href="https://blog.stata.com/2020/11/10/stata-for-mac-with-apple-silicon/">has been updated for use on Apple Silicon based Macs</a> but older versions will run through translation instead of
+native support.</p>
+</div>
+<div class="admonition-assumptions admonition">
+<p class="admonition-title">Assumptions</p>
+<p>This lecture presumes you have already installed <code class="docutils literal notranslate"><span class="pre">Stata16</span></code> on your computer and you are already
+proficient with using <code class="docutils literal notranslate"><span class="pre">stata</span></code></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Some Universities install <code class="docutils literal notranslate"><span class="pre">stata</span></code> over the network as university provided software.
+This can cause issues relating to permissions so please speak up if you run into
+these problems and we can look at trying to find a solution.</p>
+</div>
+<p>Integration between computer software is always a tricky problem to solve and typically requires
+some investment in setting up the integrations properly.</p>
+<p>In this lecture we will focus on setting up <code class="docutils literal notranslate"><span class="pre">python</span></code> in <code class="docutils literal notranslate"><span class="pre">stata</span></code> and getting access to your configuration.</p>
+<p>Having good knowledge of how your system is configured can great assist in reducing bugs and issues related
+to software problems and environments.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>This workflow has been put together on <code class="docutils literal notranslate"><span class="pre">macOS</span></code>. The <code class="docutils literal notranslate"><span class="pre">stata</span></code> application is pretty consistent
+across platforms such as <code class="docutils literal notranslate"><span class="pre">Windows</span></code> but please let me know if we need <code class="docutils literal notranslate"><span class="pre">windows</span></code> tabs for clarity</p>
+</div>
+<p>Open up the <code class="docutils literal notranslate"><span class="pre">Stata</span></code> application on your computer</p>
+<div class="figure align-default">
+<img alt="../_images/stata-open.png" src="../_images/stata-open.png" />
+</div>
+<div class="section" id="checking-your-configuration">
+<h2><span class="section-number">6.1. </span>Checking your Configuration<a class="headerlink" href="#checking-your-configuration" title="Permalink to this headline">¶</a></h2>
+<p>To check your configuration you can type</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>python<span class="k"> query</span>
+</pre></div>
+</div>
+<p>in the command window which will provide the following details:</p>
+<div class="figure align-default">
+<img alt="../_images/stata-python-query.png" src="../_images/stata-python-query.png" />
+</div>
+<p>the <code class="docutils literal notranslate"><span class="pre">output</span></code> provides useful information about how <code class="docutils literal notranslate"><span class="pre">stata</span></code> and <code class="docutils literal notranslate"><span class="pre">python</span></code>
+are linked together.</p>
+<table class="colwidths-given table">
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">python_exec</span></code></p></td>
+<td><p>the location on your computer for the <code class="docutils literal notranslate"><span class="pre">python</span></code> interpreter you are using in <code class="docutils literal notranslate"><span class="pre">stata</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">python_userpath</span></code></p></td>
+<td><p>the location for any custom <code class="docutils literal notranslate"><span class="pre">python</span></code> code that you would like added to the python <code class="docutils literal notranslate"><span class="pre">sys.path</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">system</span> <span class="pre">information</span></code></p></td>
+<td><p>this provides additional information about the <code class="docutils literal notranslate"><span class="pre">python</span></code> version and software used.</p></td>
+</tr>
+</tbody>
+</table>
+<p>You can also see that <code class="docutils literal notranslate"><span class="pre">python</span></code> hasn’t been initialised as we haven’t used it in this lecture.</p>
+</div>
+<div class="section" id="searching-for-python-on-your-system">
+<h2><span class="section-number">6.2. </span>Searching for Python on your System<a class="headerlink" href="#searching-for-python-on-your-system" title="Permalink to this headline">¶</a></h2>
+<p>Stata can search your system for any <code class="docutils literal notranslate"><span class="pre">python</span></code> installations and list them by typing</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>python<span class="k"> search</span>
+</pre></div>
+</div>
+<p>in the command window.</p>
+<div class="figure align-default">
+<img alt="../_images/stata-python-search.png" src="../_images/stata-python-search.png" />
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">python</span></code> is not yet configured you will see:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>. python<span class="k"> search</span>
+
+<span class="k">no</span> Python installation found; minimum<span class="k"> version</span> required is <span class="m">2.7</span>.
+<span class="nf">r</span>(<span class="m">111</span>)
+</pre></div>
+</div>
+<p>this will require you to install a python environment such as <span class="xref myst">anaconda</span></p>
+</div>
+</div>
+<div class="section" id="setting-the-python-distribution">
+<h2><span class="section-number">6.3. </span>Setting the python distribution<a class="headerlink" href="#setting-the-python-distribution" title="Permalink to this headline">¶</a></h2>
+<p>Linking <code class="docutils literal notranslate"><span class="pre">stata</span></code> to a specific <code class="docutils literal notranslate"><span class="pre">python</span></code> installation (such as <code class="docutils literal notranslate"><span class="pre">anaconda</span></code>) can be done
+using the <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">python_exec</span></code> command such as:</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="ba731b2f-1952-41a6-a0a6-69643f9fc50c" name="4bc20be1-34b5-45a9-9868-3b55e5f76934" type="radio">
+</input><label class="tabbed-label" for="ba731b2f-1952-41a6-a0a6-69643f9fc50c">
+macOS</label><div class="tabbed-content docutils">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">set</span> python_exec <span class="o">/</span>Users<span class="o">/&lt;</span>user<span class="o">&gt;/</span>anaconda3<span class="o">/</span>bin<span class="o">/</span>python
+</pre></div>
+</div>
+</div>
+<input id="993a3134-aa9e-44ca-931f-085304637fa5" name="4bc20be1-34b5-45a9-9868-3b55e5f76934" type="radio">
+</input><label class="tabbed-label" for="993a3134-aa9e-44ca-931f-085304637fa5">
+Windows</label><div class="tabbed-content docutils">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">set</span> python_exec C:\Users\<span class="o">&lt;</span>users<span class="o">&gt;</span>\anaconda3\python<span class="m">.</span>exe
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you have already started a python session in <code class="docutils literal notranslate"><span class="pre">stata</span></code> you will need to quit stata
+and reopen it before using <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">python_exec</span></code></p>
+</div>
+<p>This can be used together with <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">search</span></code> to know which path to provide.</p>
+<p>You can then check the setting has taken effect using <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">query</span></code>.</p>
+</div>
+<div class="section" id="updating-your-sys-path-in-python">
+<h2><span class="section-number">6.4. </span>Updating your <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> in <code class="docutils literal notranslate"><span class="pre">python</span></code><a class="headerlink" href="#updating-your-sys-path-in-python" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">python</span></code> uses <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> to specify the search path for looking up
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">packages</span></code> and other utilities and programs.</p>
+<p>You can add a custom path for the python <code class="docutils literal notranslate"><span class="pre">stata</span></code> environment using <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">python_userpath</span></code></p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="493f21c6-318c-422f-93a3-e136b66b99ba" name="c32f29d7-9b90-494c-968a-b1643763e8e5" type="radio">
+</input><label class="tabbed-label" for="493f21c6-318c-422f-93a3-e136b66b99ba">
+macOS</label><div class="tabbed-content docutils">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">set</span> python_userpath <span class="o">/</span>Users<span class="o">/&lt;</span>user<span class="o">&gt;/</span>mypythoncode
+</pre></div>
+</div>
+</div>
+<input id="e2fd3bcc-2ae8-4d7b-a9ae-1c3eb7e6a883" name="c32f29d7-9b90-494c-968a-b1643763e8e5" type="radio">
+</input><label class="tabbed-label" for="e2fd3bcc-2ae8-4d7b-a9ae-1c3eb7e6a883">
+Windows</label><div class="tabbed-content docutils">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">set</span> python_userpath C:\Users\<span class="o">&lt;</span>users<span class="o">&gt;</span>\mypythoncode
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then check the setting has taken effect using <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">query</span></code>.</p>
+</div>
+<div class="section" id="testing-python">
+<h2><span class="section-number">6.5. </span>Testing Python<a class="headerlink" href="#testing-python" title="Permalink to this headline">¶</a></h2>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="admonition-macos-anaconda-issue admonition">
+<p class="admonition-title">macOS + Anaconda Issue</p>
+<p>I ran into <a class="reference external" href="https://www.statalist.org/forums/forum/general-stata-discussion/general/1578573-python-integration-pandas-package-causing-stata-to-close">this issue</a> on my <code class="docutils literal notranslate"><span class="pre">macOS</span></code> installation
+of Stata and found the suggestion solution was required to prevent this behavior</p>
+</div>
+</div>
+<p>To check that everything is setup and ready to go you can run the
+<a class="reference internal" href="python-integrated.html#stata-python-interactive"><span class="std std-ref">first python example</span></a> and verify
+everything is working.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./stata"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="python.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">5. </span>Stata and Python</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="python-integrated.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">7. </span>Integrated Workflows</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Thomas J. Sargent & John Stachurski<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
