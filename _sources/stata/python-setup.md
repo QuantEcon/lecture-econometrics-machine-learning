@@ -90,7 +90,7 @@ no Python installation found; minimum version required is 2.7.
 r(111)
 ```
 
-this will require you to install a python environment such as [anaconda](resources/setup)
+this will require you to install a python environment such as [anaconda](https://python-programming.quantecon.org/getting_started.html#anaconda)
 :::
 
 ## Setting the python distribution
