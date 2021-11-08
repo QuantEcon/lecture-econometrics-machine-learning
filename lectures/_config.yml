@@ -8,8 +8,8 @@ execute:
   execute_notebooks: "cache"
   timeout: 600
 
-# bibtex_bibfiles:
-#    - _static/quant-econ.bib
+bibtex_bibfiles:
+   - _static/references.bib
 
 html:
   baseurl: https://python-econometrics-machine-learning.quantecon.org/
@@ -19,7 +19,7 @@ latex:
       targetname: quantecon-python-econometrics-machine-learning.tex
 
 sphinx:
-  extra_extensions: [sphinx.ext.todo] # sphinx_tojupyter
+  extra_extensions: [sphinx.ext.todo, sphinx_exercise] # sphinx_tojupyter
   config:
     nb_render_priority:
       html:
@@ -43,18 +43,18 @@ sphinx:
       - "text/markdown"
       - "text/plain"
     html_favicon: _static/lectures-favicon.ico
-    html_theme: quantecon_book_theme
+    # html_theme: quantecon_book_theme
     html_static_path: ['_static']
     html_theme_options:
-      header_organisation_url: https://quantecon.org
-      header_organisation: QuantEcon
+      # header_organisation_url: https://quantecon.org
+      # header_organisation: QuantEcon
       repository_url: https://github.com/QuantEcon/lecture-econometrics-machine-learning
       # nb_repository_url: https://github.com/QuantEcon/lecture-econometrics-machine-learning.notebooks
-      twitter: quantecon
-      twitter_logo_url: https://assets.quantecon.org/img/qe-twitter-logo.png
-      og_logo_url: https://assets.quantecon.org/img/qe-og-logo.png
-      description: This website presents a set of lectures on python for econometrics and machine learning.
-      keywords: Python, QuantEcon, Quantitative Economics, Economics, Econometrics, Machine Learning, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski
+      # twitter: quantecon
+      # twitter_logo_url: https://assets.quantecon.org/img/qe-twitter-logo.png
+      # og_logo_url: https://assets.quantecon.org/img/qe-og-logo.png
+      # description: This website presents a set of lectures on python for econometrics and machine learning.
+      # keywords: Python, QuantEcon, Quantitative Economics, Economics, Econometrics, Machine Learning, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski
       # google_analytics_id: UA-54984338-XX
     # tojupyter_static_file_path: ["source/_static", "_static"]
     # tojupyter_target_html: true

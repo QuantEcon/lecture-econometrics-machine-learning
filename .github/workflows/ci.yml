@@ -55,8 +55,9 @@ jobs:
       # Build HTML (Website)
       - name: Build HTML
         shell: bash -l {0}
+        # Disabled -W
         run: |
-          jb build -W --keep-going lectures --path-output ./
+          jb build --keep-going lectures --path-output ./
       - name: Save Build as Artifact
         uses: actions/upload-artifact@v1
         with:
