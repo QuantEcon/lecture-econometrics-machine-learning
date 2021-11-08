@@ -6,6 +6,7 @@ parts:
   chapters:
   - file: pandas
   - file: pandas_panel
+  - file: working-with-data
 - caption: Econometrics
   numbered: true
   chapters:
