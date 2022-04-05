@@ -1,19 +1,19 @@
 format: jb-book
 root: intro
 parts:
-- caption: Programming Skills and Tools
-  numbered: true
-  chapters:
-  - file: pandas
-  - file: pandas_panel
-- caption: Econometrics
-  numbered: true
-  chapters:
-  - file: statsmodels
-- caption: Machine Learning
-  numbered: true
-  chapters:
-  - file: scikit-learn
+# - caption: Programming Skills and Tools
+#   numbered: true
+#   chapters:
+#   - file: pandas
+#   - file: pandas_panel
+# - caption: Econometrics
+#   numbered: true
+#   chapters:
+#   - file: statsmodels
+# - caption: Machine Learning
+#   numbered: true
+#   chapters:
+#   - file: scikit-learn
 - caption: Python for Stata Users
   numbered: true
   chapters:
