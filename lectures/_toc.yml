@@ -22,6 +22,7 @@ parts:
    - file: stata/setup-python-in-stata
    - file: stata/stata-from-python
    - file: stata/python-from-stata
+   - file: stata/python-files
    - file: stata/python-example
    - file: stata/exercises
 - caption: Other

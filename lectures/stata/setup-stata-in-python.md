@@ -15,6 +15,7 @@ The requirements to use `pystata` are:
 1. Stata 17 or later versions
 2. Python 2.7 or 3.4+
 
+(stata/setup-stata-in-python/installation)=
 ### Installation
 
 The easiest way to install the [pystata](https://www.stata.com/python/pystata/) package
