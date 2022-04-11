@@ -1,5 +1,5 @@
-(stata/python-integrated)=
-# Integrated Workflows
+(stata/python-from-stata)=
+# Using Python from Stata
 
 :::{margin}
 The [stata manual](https://www.stata.com/manuals/ppython.pdf) has a section
@@ -8,6 +8,11 @@ on the `python` command.
 This [blog post](https://blog.stata.com/2020/08/25/stata-python-integration-part-2-three-ways-to-use-python-in-stata/)
 does a really good job of explaining the different methods for using `python` in `stata`.
 :::
+
+```{tip}
+It is always a good idea to check your `python` configuration before proceeding.
+This can be done in [](stata/setup-python-in-stata)
+```
 
 There are `three` primary interfaces to running `python` within `stata`:
 

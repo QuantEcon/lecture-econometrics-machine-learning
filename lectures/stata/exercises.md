@@ -12,7 +12,7 @@ sysuse auto
 
 **Part 1:**
 
-Use the [integrated workflows](stata/python-integrated)
+Use [python-from-stata](stata/python-from-stata) lecture
 to transfer the `weight` and `price` variables to `python` and save the
 results in a `pd.DataFrame` called `data`.
 
@@ -36,7 +36,7 @@ results in a `pd.DataFrame` called `data`.
 
 **Part 2:**
 
-Use [statsmodels](statsmodels) to run a simple `OLS` regression of `weight ~ price`
+Use the python package [statsmodels](https://www.statsmodels.org/stable/index.html) to run a simple `OLS` regression of `weight ~ price`
 and then run this regression in `stata`.
 :::
 
@@ -53,7 +53,7 @@ and construct a dataframe.
 
 **Part 1:**
 
-Choose to use either the [integrated workflows](stata/python-integrated)
+Choose to use either the [python-from-stata](stata/python-from-stata) lecture
 or [file based workflow](stata/python-files) to transfer the
 last three months of stock price data ("closing price") to `stata`
 

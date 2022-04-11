@@ -1,20 +1,34 @@
 (stata/python)=
 # Stata and Python
 
-```{admonition} To Do
-@mmcky need to update for [Stata17](https://www.stata.com/new-in-stata/)
-with improvements to:
-1. [jupyter interface](https://www.stata.com/new-in-stata/jupyter-notebooks/)
-2. [pystata](https://www.stata.com/new-in-stata/pystata/)
+One of the major new features supported since [Stata16](https://www.stata.com/stata-news/news34-3/),
+and improved greatly in [Stata17](https://www.stata.com/stata-news/news36-2/),
+is the addition of [python integration](https://www.stata.com/new-in-stata/python-integration/).
+
+These pages are intended to be a guide for `stata` users that would like to use
+`python` as part of their `data` and `analysis` workflows. 
+
+This gives you access to many powerful tools that are available in the `python` ecosystem, 
+in addition to alternative data preparation tools such as `pandas` which may be preferred
+once you learn `python` programming.
+
+:::{margin}
+In [Stata17](https://www.stata.com/stata-news/news36-2/) StataCorp introduced a
+`python` module called `pystata` which brings much tighter integration between the two
+software environments. This includes the implementation of a `jupyter` kernel for use
+in `jupyter notebooks` or `jupyterlab` environments.
+:::
+
+There are `two` primary ways we can use `python` effectively with `stata`:
+
+1. [Using **stata** from **python** (Stata17)](stata/stata-from-python)
+2. [Using **python** from **stata** (Stata16)](stata/python-from-stata)
+
+```{note}
+It is also possible to use `python` and `stata` together as independant tools by
+using file based workflows. This can be a productive workflow strategy and is
+covered in [Using **stata** with **python** (via file based workflows)](stata/python-files)
 ```
-
-One of the major new features of [Stata16](https://www.stata.com/new-in-stata/)
-is [python integration](https://www.stata.com/new-in-stata/python-integration/).
-
-There are `two` main ways we can use `python` effectively with `stata`:
-
-1. [Using **python** in **stata** (through integrated workflows)](stata/python-integrated)
-2. [Using **stata** with **python** (via file based workflows)](stata/python-files)
 
 ## Stata Resources
 
