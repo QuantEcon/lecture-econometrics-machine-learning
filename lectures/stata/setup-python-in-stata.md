@@ -1,9 +1,8 @@
-(stata/python-setup)=
+(stata/setup-python-in-stata)=
 # Setup Python in Stata
 
 :::{margin}
-Stata16 [has been updated for use on Apple Silicon based Macs](https://blog.stata.com/2020/11/10/stata-for-mac-with-apple-silicon/) but older versions will run through translation instead of
-native support.
+Stata16 [has been updated for use on Apple Silicon based Macs](https://blog.stata.com/2020/11/10/stata-for-mac-with-apple-silicon/) but older versions will run through translation instead of native support.
 :::
 
 ```{admonition} Assumptions
@@ -13,8 +12,8 @@ proficient with using `stata`
 
 ```{warning}
 Some Universities install `stata` over the network as university provided software.
-This can cause issues relating to permissions so please speak up if you run into
-these problems and we can look at trying to find a solution.
+This can cause issues relating to permissions when installing new softare. If this occurs
+you may need to contact your IT department.
 ```
 
 Integration between computer software is always a tricky problem to solve and typically requires
@@ -26,8 +25,8 @@ Having good knowledge of how your system is configured can great assist in reduc
 to software problems and environments.
 
 :::{margin}
-This workflow has been put together on `macOS`. The `stata` application is pretty consistent
-across platforms such as `Windows` but please let me know if we need `windows` tabs for clarity
+This workflow has been put together on `macOS`. While the `stata` application is pretty consistent
+across platforms such as `Windows`, please open any issues you come across [here](https://github.com/QuantEcon/lecture-econometrics-machine-learning/issues)
 :::
 
 Open up the `Stata` application on your computer

@@ -18,10 +18,10 @@ parts:
   numbered: true
   chapters:
    - file: stata/python
-   - file: stata/python-setup
-   - file: stata/python-integrated
-   - file: stata/python-files
-   - file: stata/jupyter
+   - file: stata/setup-stata-in-python
+   - file: stata/setup-python-in-stata
+   - file: stata/stata-from-python
+   - file: stata/python-from-stata
    - file: stata/python-example
    - file: stata/exercises
 - caption: Other
